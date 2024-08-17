@@ -1,10 +1,12 @@
-import { Project } from 'projen';
-const project = new Project({
-  name: 'temp',
+import { TypeScriptProject } from 'projen';
 
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+const project = new TypeScriptProject({
+  name: 'my-projen-project',
+  defaultReleaseBranch: 'main',
+  //packageManager: NodePackageManager.NPM,
+  srcdir: 'src',
+  testdir: 'test',
 });
+
 project.synth();
+
