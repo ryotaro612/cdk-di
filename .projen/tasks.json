@@ -30,7 +30,12 @@
     },
     "default": {
       "name": "default",
-      "description": "Synthesize project files"
+      "description": "Synthesize project files",
+      "steps": [
+        {
+          "exec": "npx ts-node --project tsconfig-projen.json .projenrc.ts"
+        }
+      ]
     },
     "eject": {
       "name": "eject",

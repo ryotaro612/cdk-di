@@ -1,11 +1,10 @@
-import { TypeScriptProject } from 'projen';
+import { TsProject } from './projenrc/ts';
 
-const project = new TypeScriptProject({
+const project = new TsProject({
   name: 'my-projen-project',
-  defaultReleaseBranch: 'main',
+
   //packageManager: NodePackageManager.NPM,
-  srcdir: 'src',
-  testdir: 'test',
+
 });
 
 project.synth();
