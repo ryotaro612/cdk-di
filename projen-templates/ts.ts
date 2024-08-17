@@ -1,4 +1,4 @@
-import { Project, ProjectOptions } from 'projen';
+import { Project, ProjectOptions, IgnoreFile } from 'projen';
 
 interface TsProjectOptions extends ProjectOptions {
   
@@ -7,11 +7,13 @@ interface TsProjectOptions extends ProjectOptions {
 export class TsProject extends Project {
   constructor(options: TsProjectOptions) {
 		super(options);
-
-		this.addGitIgnore('node_modules');
-
+	new IgnoreFile(this, './gitignore')
 		// new SampleFile(this, 'doge.json', {
 		// 	contents: JSON.stringify({ foo: 'bar' }),
 		// });
   }
 }
+
+
+
+
