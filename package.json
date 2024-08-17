@@ -1,0 +1,16 @@
+{
+    "name": "cdk-di",
+    "version": "0.0.1",
+    "author": "ryotaro612",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:ryotaro612/cdk-di.git"
+    },
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "@types/jest": "^29.5.12",
+        "jsii": "^5.4.32",
+        "projen": "^0.85.0",
+        "ts-jest": "^29.2.4"
+    }
+}

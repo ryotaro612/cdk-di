@@ -26,8 +26,8 @@
     "target": "ES2019"
   },
   "include": [
-    "src/**/*.ts",
-    "test/**/*.ts",
+    // "src/**/*.ts",
+    // "test/**/*.ts",
     ".projenrc.ts",
     "projenrc/**/*.ts"
   ],

@@ -1,4 +1,4 @@
-import { TsProject } from './projenrc/ts';
+import { TsProject } from './projenrc/src/ts';
 
 const project = new TsProject({
   name: 'my-projen-project',

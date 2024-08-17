@@ -12,10 +12,12 @@ export class TsProject extends Project {
 	  gitIgnoreOptions: {ignorePatterns: ['fooaaa']},
 	  ... options
 	});
+
+	// npx jest
 	// TsProjectOptions
 	// npx ts-node --project tsconfig-projen.json .projenrc.ts
 
-	this.defaultTask!.exec("npx ts-node --project tsconfig-projen.json .projenrc.ts");
+	this.defaultTask!.exec("ts-node --project tsconfig-projen.json .projenrc.ts");
 
 
   }
