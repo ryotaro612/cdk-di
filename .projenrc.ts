@@ -6,13 +6,12 @@ class CdkDiProject extends TsProject {
 	super({
 	  name: 'cdk-di',
 	});
-
-		// new SampleFile(this, 'doge.json', {
-		// 	contents: JSON.stringify({ foo: 'bar' }),
-	// });
+	aaa
 	//this.addGitIgnore('node_modules');
   }
 }
+
 const project = new CdkDiProject();
 
 project.synth();
+
