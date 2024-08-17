@@ -1,24 +1,29 @@
-import {  Project, ProjectOptions,  } from 'projen';
-
+import {  Project, ProjectOptions, } from 'projen';
 
 interface TsProjectOptions extends ProjectOptions {
-  
+
 }
 
 export class TsProject extends Project {
 
-  constructor(options: TsProjectOptions) {
-	super({
-	  gitIgnoreOptions: {ignorePatterns: ['fooaaa']},
-	  ... options
-	});
+	constructor(options: TsProjectOptions) {
+		super({
+		  gitIgnoreOptions: { ignorePatterns: ['**/*~'] },
+			...options
+		});
+	  //new Task('test', {});
+		// npx jest
+		// TsProjectOptions
+	  // npx ts-node --project tsconfig-projen.json .projenrc.ts
 
-	// npx jest
-	// TsProjectOptions
-	// npx ts-node --project tsconfig-projen.json .projenrc.ts
+	  this.defaultTask?.exec("npx ts-node --project tsconfig-projen.json .projenrc.ts");
+	  //  --updateSnapshot
+	  this.testTask.exec("npx jest", {
+		receiveArgs: true,
+	  });
+	  //this.testTask.exec('echo hoge');
+	  //this.testTask.updateStep(0, { exec: 'npx jest' });
 
-	this.defaultTask!.exec("ts-node --project tsconfig-projen.json .projenrc.ts");
+	}
 
-
-  }
 }
