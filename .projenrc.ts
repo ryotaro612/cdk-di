@@ -1,17 +1,11 @@
-import { TsProject } from './projen-templates/ts';
+import { TypeScriptProject } from 'projen';
 
-
-class CdkDiProject extends TsProject {
-  constructor() {
-	super({
-	  name: 'cdk-di',
-	});
-	aaa
-	//this.addGitIgnore('node_modules');
-  }
-}
-
-const project = new CdkDiProject();
-
+const project = new TypeScriptProject({
+  name: 'my-projen-project',
+  defaultReleaseBranch: 'main',
+  packageManager: NodePackageManager.NPM,
+  srcdir: 'src',
+  testdir: 'test',
+});
+aa;
 project.synth();
-
