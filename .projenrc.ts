@@ -1,6 +1,6 @@
-import { TsProject } from './projenrc/src/ts';
+import { TsLibraryProject,  } from './projenrc/src/ts';
 
-const project = new TsProject({
+const project = new TsLibraryProject({
   name: 'cdk-di',
 
   //packageManager: NodePackageManager.NPM,
