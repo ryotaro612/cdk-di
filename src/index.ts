@@ -1,5 +1,5 @@
 import { Names } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
+import { Construct, IConstruct } from 'constructs';
 
 export interface INode<C extends ConstructMap> {
 	children: (keyof C)[]
@@ -10,11 +10,17 @@ interface ConstructMap {
 	[id: string]: Construct
 }
 
-export function inject(scope: Construct, leaves: Construct[], inodes: INode<any>[]): ConstructMap {
-	const result: ConstructMap = {};
-	for (const leaf of leaves)
-		result[Names.uniqueId(leaf)] = leaf
+type Node<C extends ConstructMap> = INode<C> | IConstruct
 
+export function inject(scope: Construct, ...nodes: Node<any>[]): ConstructMap {
+	const result: ConstructMap = {};
+	let inodes: INode<ConstructMap>[] = []
+	for (const node of nodes) {
+		if (Construct.isConstruct(node))
+			result[Names.uniqueId(node)] = node
+		else
+			inodes.push(node)
+	}
 	let proceed = false;
 	while (inodes.length) {
 		let nextNodes: INode<ConstructMap>[] = []
@@ -35,7 +41,7 @@ export function inject(scope: Construct, leaves: Construct[], inodes: INode<any>
 				nextNodes.push(inode);
 			}
 		}
-		inodes = nextNodes
+	  inodes = nextNodes
 		if (!proceed)
 			throw new Error('The dependency structure is not a directed acyclic graph.')
 		proceed = false;
