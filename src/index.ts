@@ -78,20 +78,28 @@ function aject<D extends {}, T extends IConstruct, P extends { [id: string]: Ava
 
 
 
-interface Foo<T extends { [id: string]: IConstruct }> {
+type Foo<T extends { [id: string]: IConstruct }> = {
 	deps: (keyof T)[]
 	injectable: (mp: T) => IConstruct
-}
+} | IConstruct
 
-const c: Foo<{ a: IRepository, b: IBucket }> = {
-	deps: ['a', 'b'],
-	injectable: (mp) => {
-		return new Repository(mp.a, 'id')
+const c: Foo<{  }> = {
+	deps: [],
+	injectable: (_) => {
+		return new Repository(1 as any, 'id')
 	}
 }
 
-const d: Foo<{ b: IRepository, a: IBucket }> = {
-	deps: ['a', 'b'],
+const d: Foo<{ a: IRepository }> = {
+	deps: ['a'],
+	injectable: (mp) => {
+		return new Bucket(mp.a, 'id')
+	}
+}
+
+
+const e: Foo<{ a: IRepository, d: IBucket }> = {
+  deps: ['a', 'd'],
 	injectable: (mp) => {
 		return new Bucket(mp.a, 'id')
 	}
@@ -99,9 +107,7 @@ const d: Foo<{ b: IRepository, a: IBucket }> = {
 
 
 
-
-
-function eject<T extends { [id: string]: IConstruct }, P extends { [id in string]: Foo<T> }>(p: P): { [id in keyof P]: ReturnType<P[id]["injectable"]> } {
+function eject<T extends { [id: string]: IConstruct }, P extends { [id in string]: Foo<T> }>(p: { [id in string]: Foo<T>}) {
 	const res: { [a in keyof P]: IConstruct } = {} as any;
 	res['a' as keyof P] = new Repository(1 as any, 'id')
 	for (const [k, v] of Object.entries(p)) {
@@ -113,7 +119,8 @@ function eject<T extends { [id: string]: IConstruct }, P extends { [id in string
 
 const res = eject({
 	a: c,
-	b: d
+  b: d,
+  x: e,
 });
 res
 
