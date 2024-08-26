@@ -33,6 +33,11 @@ export class TsLibraryProject extends TypeScriptProject {
 	  defaultReleaseBranch: 'main',
 	  gitIgnoreOptions: { ignorePatterns: ['**/*~'] },
 	  packageManager: NodePackageManager.NPM,
+	  mergify:false,
+	  release: false, // remove github workflow for relase?
+	  buildWorkflow: false,
+	  depsUpgrade: false,
+	  pullRequestTemplate: false,
 	  ...options});
 
 	this.defaultTask?.reset("npx ts-node --project tsconfig-projen.json .projenrc.ts");
