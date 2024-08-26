@@ -37,6 +37,9 @@ export class TsLibraryProject extends TypeScriptProject {
 	  release: false, // remove github workflow for relase?
 	  buildWorkflow: false,
 	  depsUpgrade: false,
+	  githubOptions: {
+		pullRequestLint: false,
+	  },
 	  pullRequestTemplate: false,
 	  ...options});
 
